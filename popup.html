@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Beautifier</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Beautifier</h1>
+        <div class="input-section">
+            <label for="sql-input">Введите SQL запрос:</label>
+            <textarea id="sql-input" placeholder="SELECT id, name, email FROM users WHERE active = 1"></textarea>
+        </div>
+        <div class="controls">
+            <button id="paste-btn" class="secondary-btn">Вставить из буфера обмена</button>
+            <button id="clear-btn" class="secondary-btn">Очистить</button>
+            <button id="copy-btn" class="secondary-btn">Копировать</button>
+        </div>
+        <div class="output-section">
+            <label for="sql-output">Отформатированный SQL:</label>
+            <textarea id="sql-output" readonly></textarea>
+        </div>
+    </div>
+    <script src="sql-formatter.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

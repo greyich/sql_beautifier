@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Formatter Test</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>SQL Formatter Test</h1>
+    
+    <h2>Input SQL:</h2>
+    <textarea id="input" rows="5" cols="80">SELECT id, name, email FROM users WHERE active = 1</textarea>
+    <br><br>
+    <button id="pasteBtn">Вставить из буфера обмена</button>
+    
+    <h2>Output:</h2>
+    <pre id="output"></pre>
+    
+    <script src="sql-formatter.js"></script>
+    <script>
+        function formatSQL() {
+            const input = document.getElementById('input').value;
+            const formatter = new SQLFormatter();
+            const formatted = formatter.format(input);
+            document.getElementById('output').textContent = formatted;
+        }
+
+        // Автоформатирование при любом изменении
+        document.getElementById('input').addEventListener('input', formatSQL);
+
+        // Вставка из буфера обмена
+        document.getElementById('pasteBtn').addEventListener('click', async function() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('input').value = text;
+                formatSQL();
+            } catch (err) {
+                alert('Не удалось получить данные из буфера обмена: ' + err);
+            }
+        });
+
+        // Первоначальное форматирование
+        window.onload = function() {
+            formatSQL();
+        };
+    </script>
+</body>
+</html> 
